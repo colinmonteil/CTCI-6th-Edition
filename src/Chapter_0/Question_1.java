@@ -16,6 +16,10 @@ public class Question_1 {
     }
 
     public static int getUniquePairCount(int[] input, int k) {
+        // Check for valid inputs
+        if (input.length < 2)
+            return 0;
+
         // Create a set for the elements of the input array
         Set<Integer> inputSet = new HashSet<>();
         for (int elem : input)
