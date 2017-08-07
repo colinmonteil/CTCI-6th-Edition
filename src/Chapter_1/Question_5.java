@@ -18,6 +18,7 @@ public class Question_5 {
         System.out.println("\"" + inputA + "\" and \"" + inputB + "\" are one edit away: " + oneEditAway(inputA, inputB));
     }
 
+    // Time: O(N) Space: O(1)
     private static boolean oneEditAway(String inputA, String inputB) {
         // Check inputs
         if (Math.abs(inputA.length() - inputB.length()) > 1)
