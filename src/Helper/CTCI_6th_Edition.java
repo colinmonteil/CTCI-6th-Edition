@@ -21,6 +21,20 @@ public class CTCI_6th_Edition {
         return freqMap;
     }
 
+    public static Map<Character,Integer> getStringFreqMap(String string) {
+        Map<Character,Integer> freqMap = new HashMap<>();
+
+        for (int i = 0; i < string.length(); i++) {
+            char c = string.charAt(i);
+            if (freqMap.containsKey(c))
+                freqMap.put(c, freqMap.get(c) + 1);
+            else
+                freqMap.put(c, 1);
+        }
+
+        return freqMap;
+    }
+
     public static <K> Map<K,Integer> getFreqMapFromArray(K[] input) {
         Map<K, Integer> freqMap = new HashMap<>();
 
