@@ -8,6 +8,19 @@ import java.util.Map;
  * This class will contain helper functions
  */
 public class CTCI_6th_Edition {
+    public static Map<Character,Integer> getCharFreqMap(char[] chars) {
+        Map<Character,Integer> freqMap = new HashMap<>();
+
+        for (char c : chars) {
+            if (freqMap.containsKey(c))
+                freqMap.put(c, freqMap.get(c) + 1);
+            else
+                freqMap.put(c, 1);
+        }
+
+        return freqMap;
+    }
+
     public static <K> Map<K,Integer> getFreqMapFromArray(K[] input) {
         Map<K, Integer> freqMap = new HashMap<>();
 

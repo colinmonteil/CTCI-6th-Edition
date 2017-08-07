@@ -1,5 +1,7 @@
 package Chapter_0;
 
+import Helper.CTCI_6th_Edition;
+
 import java.util.*;
 
 /**
@@ -15,7 +17,7 @@ public class Question_3 {
 
     // O(B * S)
     private static void printPermPositions(String small, String large) {
-        Map<Character,Integer> smallFreqMap = getCharFreqMap(small.toCharArray());
+        Map<Character,Integer> smallFreqMap = CTCI_6th_Edition.getCharFreqMap(small.toCharArray());
 
         for (int i = 0; i < large.length(); i++) {
             int numCorrect = 0;
@@ -33,20 +35,8 @@ public class Question_3 {
                 }
             }
             // Reset frequency map of small string's characters
-            smallFreqMap = getCharFreqMap(small.toCharArray());
+            smallFreqMap = CTCI_6th_Edition.getCharFreqMap(small.toCharArray());
         }
     }
 
-    private static Map<Character,Integer> getCharFreqMap(char[] chars) {
-        Map<Character,Integer> freqMap = new HashMap<>();
-
-        for (char c : chars) {
-            if (freqMap.containsKey(c))
-                freqMap.put(c, freqMap.get(c) + 1);
-            else
-                freqMap.put(c, 1);
-        }
-
-        return freqMap;
-    }
 }
