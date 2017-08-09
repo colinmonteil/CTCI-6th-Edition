@@ -22,7 +22,7 @@ public class Question_7 {
         printMatrix(imageMatrix);
     }
 
-    // Time: O(N) Space: O(1)
+    // Time: O(N^2) Space: O(1)
     private static void rotate(int[][] matrix, ROT_DIRECTION dir) {
         final int N = matrix.length;
         if (N == 1)
