@@ -9,7 +9,7 @@ import java.util.Queue;
  */
 public class Question_1 {
     public static void main(String[] args) {
-        Graph dirGraph = new Graph();
+        Graph<Integer> dirGraph = new Graph<>();
         dirGraph.addDirEdge(0,1);
         dirGraph.addDirEdge(0,2);
         dirGraph.addDirEdge(0,3);
@@ -22,24 +22,24 @@ public class Question_1 {
 
         int sourceVal = 2;
         int destVal = 4;
-        Node source = dirGraph.nodesMap.get(sourceVal);
-        Node dest = dirGraph.nodesMap.get(destVal);
+        Node<Integer> source = dirGraph.nodesMap.get(sourceVal);
+        Node<Integer> dest = dirGraph.nodesMap.get(destVal);
         System.out.println("There is a path from node " + sourceVal + " to node " + destVal + ": "
                 + isPath(source, dest));
     }
 
-    private static boolean isPath(Node source, Node dest) {
+    private static boolean isPath(Node<Integer> source, Node<Integer> dest) {
         // If we are starting on our goal node, then there is a path
         if (source == dest)
             return true;
 
         // Perform a breadth-first search of the graph and stop if the goal node is found
-        Queue<Node> nodesToVisit = new LinkedList<>();
+        Queue<Node<Integer>> nodesToVisit = new LinkedList<>();
         source.visited = true;
         nodesToVisit.add(source);
         while (!nodesToVisit.isEmpty()) {
-            Node curr = nodesToVisit.remove();
-            for (Node neighbor : curr.childMap.values()) {
+            Node<Integer> curr = nodesToVisit.remove();
+            for (Node<Integer> neighbor : curr.childMap.values()) {
                 if (!neighbor.visited) {
                     if (neighbor == dest)
                         return true;

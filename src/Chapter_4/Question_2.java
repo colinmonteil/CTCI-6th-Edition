@@ -22,7 +22,7 @@ public class Question_2 {
 
         // Create root node of this subtree
         int midIdx = (startIdx + endIdx) / 2;
-        BinaryNode root = new BinaryNode(array[midIdx]);
+        BinaryNode<Integer> root = new BinaryNode<>(array[midIdx]);
 
         // Create child trees of the root
         root.left = createMinimalBSTHelper(array, startIdx, midIdx - 1);

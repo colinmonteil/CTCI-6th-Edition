@@ -1,40 +1,43 @@
 package Chapter_4;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 
 /**
  * Created by Colin on 8/20/2017.
  */
-public class Graph {
-    public Map<Integer,Node> nodesMap;
+public class Graph<T> {
+    public Map<T,Node<T>> nodesMap;
 
     public Graph() {
         this.nodesMap = new LinkedHashMap<>();
     }
-    public Graph(Node... nodes) {
+    public Graph(Node<T>... nodes) {
         this();
-        for (Node node : nodes)
+        for (Node<T> node : nodes)
             this.addNode(node);
     }
 
-    public void addNode(Node node) {
+    public void addNode(Node<T> node) {
         if (!nodesMap.containsKey(node.value))
             nodesMap.put(node.value, node);
     }
-    public Node addNode(int value) {
+    public Node<T> addNode(T value) {
         if (!nodesMap.containsKey(value))
-            nodesMap.put(value, new Node(value));
+            nodesMap.put(value, new Node<>(value));
 
         return nodesMap.get(value);
     }
-    public void addDirEdge(Node source, Node dest) {
+    public void addDirEdge(Node<T> source, Node<T> dest) {
         addNode(source);
         addNode(dest);
         source.addChild(dest);
     }
-    public void addDirEdge(int sourceVal, int destVal) {
-        Node source = addNode(sourceVal);
-        Node dest = addNode(destVal);
+    public void addDirEdge(T sourceVal, T destVal) {
+        Node<T> source = addNode(sourceVal);
+        Node<T> dest = addNode(destVal);
         source.addChild(dest);
     }
 
@@ -45,9 +48,10 @@ public class Graph {
         root.visited = true;
         System.out.print(root.value + " ");
 
-        for (Node node : root.childMap.values()) {
-            if (!node.visited)
-                depthFirstSearch(node);
+        for (Object node : root.childMap.values()) {
+            Node realNode = (Node)node;
+            if (!realNode.visited)
+                depthFirstSearch(realNode);
         }
     }
     public static void breadthFirstSearch(Node root) {
@@ -59,10 +63,11 @@ public class Graph {
             Node curr = toVisit.remove();
             System.out.print(curr.value + " ");
 
-            for (Node neighbor : curr.childMap.values()) {
-                if (!neighbor.visited) {
-                    neighbor.visited = true;
-                    toVisit.add(neighbor);
+            for (Object neighbor : curr.childMap.values()) {
+                Node realNeighbor = (Node)neighbor;
+                if (!realNeighbor.visited) {
+                    realNeighbor.visited = true;
+                    toVisit.add(realNeighbor);
                 }
             }
 
@@ -74,7 +79,7 @@ public class Graph {
         StringBuilder sb = new StringBuilder();
         sb.append("Graph:\n");
         for (Node node : nodesMap.values())
-            sb.append("\t" + node + "\n");
+            sb.append("\t").append(node).append("\n");
 
         return sb.toString();
     }

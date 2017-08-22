@@ -6,33 +6,33 @@ import java.util.Map;
 /**
  * Created by Colin on 8/20/2017.
  */
-public class BinaryNode extends Node {
+public class BinaryNode<T> extends Node<T> {
     public BinaryNode left;
     public BinaryNode right;
 
-    public BinaryNode(int value) {
+    public BinaryNode(T value) {
         super(value);
         this.left = null;
         this.right = null;
     }
 
     // Produces a binary tree given the in-order list of values
-    public static BinaryNode makeBinaryTree(int[] nodeValues) {
-        Map<Integer, BinaryNode> nodeMap = new HashMap<>();
-        for (int val : nodeValues)
-            nodeMap.put(val, new BinaryNode(val));
+    public static <T> BinaryNode makeBinaryTree(T[] nodeValues) {
+        Map<T, BinaryNode<T>> nodeMap = new HashMap<>();
+        for (T val : nodeValues)
+            nodeMap.put(val, new BinaryNode<>(val));
 
         for (int i = 0; i < nodeValues.length; i++) {
             BinaryNode curr = nodeMap.get(nodeValues[i]);
 
             int k;
             if ((k = (i * 2) + 1) < nodeValues.length) {
-                BinaryNode leftNode = nodeMap.get(nodeValues[k]);
+                BinaryNode<T> leftNode = nodeMap.get(nodeValues[k]);
                 curr.left = leftNode;
                 curr.addChild(leftNode);
             }
             if ((k = (i * 2) + 2) < nodeValues.length) {
-                BinaryNode rightNode = nodeMap.get(nodeValues[k]);
+                BinaryNode<T> rightNode = nodeMap.get(nodeValues[k]);
                 curr.right = rightNode;
                 curr.addChild(rightNode);
             }
